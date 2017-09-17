@@ -1,7 +1,6 @@
 import React from 'react'
 import '../App.css';
 import '../CSS/Table.css';
-import AddPlayers from './AddPlayers'
 
 class PlayerStatsView extends React.Component {
   state = {users: []}
@@ -14,6 +13,7 @@ class PlayerStatsView extends React.Component {
 
   render() {
     return (
+
       <div className="App">
         <section id="playerCardSection">
           <div className="container py-3">
@@ -63,8 +63,29 @@ class PlayerStatsView extends React.Component {
               <td className="text-left">{user.Series}</td>
               <td className="text-left">{user.Round}</td>
               <td className="text-left">{user.Surface}</td>
-              <td className="text-left">{user.Winner}</td>
-              <td className="text-left">{user.Surface}</td>
+              {(() => {
+                if (user.Winner === this.props.params.name.split(' ')[1]+' '+this.props.params.name.split(' ')[0].charAt(0)+'.')
+                  return <td className="text-left">{user.Loser}</td>
+                else
+                  return <td className="text-left">{user.Winner}</td>
+              })()}
+              {(() => {
+                var score ='';
+                // if (user.Winner === this.props.params.name.split(' ')[1] + ' ' + this.props.params.name.split(' ')[0].charAt(0) + '.') {
+                  //Player Lost
+                  if (user.W1)
+                    score += user.W1 + '-' + user.L1 + ' ';
+                  if (user.W2)
+                    score += user.W2 + '-' + user.L2 + ' ';
+                  if (user.W3)
+                    score += user.W3 + '-' + user.L3 + ' ';
+                  if (user.W4)
+                    score += user.W4 + '-' + user.L4 + ' ';
+                  if (user.W5)
+                    score += user.W5 + '-' + user.L5;
+                // }
+                return <td className="text-left">{score}</td>
+              })()}
             </tr>
           )}
           </tbody>

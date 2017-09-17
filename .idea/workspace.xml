@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351cdf3c-9636-4534-8814-c13320594c3e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/App.js" afterPath="$PROJECT_DIR$/client/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/Views/AddPlayers.js" afterPath="$PROJECT_DIR$/client/src/Views/AddPlayers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/Views/PlayerStatsView.js" afterPath="$PROJECT_DIR$/client/src/Views/PlayerStatsView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/Views/PlayersView.js" afterPath="$PROJECT_DIR$/client/src/Views/PlayersView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/Views/SearchPlayer.js" afterPath="$PROJECT_DIR$/client/src/Views/SearchPlayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddPlayers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AddPlayers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/Views/AddPlayers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -58,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerStatsView.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlayerStatsView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/Views/PlayerStatsView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-655">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="176">
+              <caret line="72" column="29" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -137,7 +129,6 @@
         <option value="$PROJECT_DIR$/client/src/Views/AddPlayer.js" />
         <option value="$PROJECT_DIR$/client/src/Views/SearchPlayers.js" />
         <option value="$PROJECT_DIR$/client/src/CSS/Table.css" />
-        <option value="$PROJECT_DIR$/client/src/Views/PlayerStatsView.js" />
         <option value="$PROJECT_DIR$/client/src/Views/AddPlayers.js" />
         <option value="$PROJECT_DIR$/client/src/App.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
@@ -145,6 +136,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/client/src/Views/SearchPlayer.js" />
         <option value="$PROJECT_DIR$/client/src/Views/PlayersView.js" />
+        <option value="$PROJECT_DIR$/client/src/Views/PlayerStatsView.js" />
       </list>
     </option>
   </component>
@@ -346,7 +338,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17389000" />
+    <option name="totallyTimeSpent" value="19043000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="23" width="1273" height="773" extended-state="0" />
@@ -578,20 +570,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/Views/PlayerStatsView.js">
+    <entry file="file://$PROJECT_DIR$/client/src/Views/AddPlayers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-655">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="238">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/Views/AddPlayers.js">
+    <entry file="file://$PROJECT_DIR$/client/src/Views/PlayerStatsView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="176">
+          <caret line="72" column="29" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
