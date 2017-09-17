@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import './PlayerStats.css';
 import ReactDOM from 'react-dom'
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
@@ -31,7 +30,7 @@ class PlayerStatsView extends React.Component {
         return (
 
             <div className="App">
-                <section id="playerCardSection">
+                <section>
                     <div className="container py-3">
                         <div className="card">
                             <div className="row ">
@@ -113,7 +112,7 @@ class AddPlayers extends React.Component {
                         age: {this.props.age}</p>
                 </div>
                 <div className="card-footer">
-                    <Link className="btn btn-primary" to={'/'+this.props.name+'/stats'} player={this.props}>Find Out More</Link>
+                    <Link className="btn btn-primary" to={'/'+this.props.name+'/stats'}>Find Out More</Link>
                     {/*<button >Find Out More!</button>*/}
                 </div>
             </div>
@@ -121,7 +120,15 @@ class AddPlayers extends React.Component {
     }
 }
 
+function searchPlayerServer() {
+    fetch('/search/'+ this.state.value)
+        .then(res => res.json())
+        //.then(users => this.setState({users}))
+        .then(SearchPlayer.changeSm())
+    }
+
 class SearchPlayer extends React.Component {
+   state2 = {users: []}
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -130,29 +137,37 @@ class SearchPlayer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  changeSm(){
+    console.log('d')
+  }
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
+    searchPlayerServer();
     event.preventDefault();
   }
 
+  
+
+
   render() {
     return (
-    <div className="container">
-      <form onSubmit={this.handleSubmit}>
-      <div className="row">
-      <div className="col-md-10">
-        <input type="text" className="form-control"value={this.state.value} onChange={this.handleChange} placeholder="Type players name"/>
+        <div className="container">
+            <form onSubmit={this.handleSubmit}>
+                <div className="row">
+                <div className="col-md-10">
+                    <input type="text" className="form-control"value={this.state.value} onChange={this.handleChange} placeholder="Type players name"/>
+                </div>
+                <div className="col-md-1">
+                    <input type="submit" className="btn btn-primary" value="Search player" />
+                </div>
+                </div>
+            </form>
         </div>
-        <div className="col-md-1">
-        <input type="submit" className="btn btn-primary" value="Search player" />
-        </div>
-        </div>
-      </form>
-      </div>
     );
   }
 }
