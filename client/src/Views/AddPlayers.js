@@ -2,7 +2,9 @@ import React from 'react'
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 import '../App.css';
 import '../PlayerStats.css';
-import Infinite from 'react-infinite';
+import '../CSS/stars.css';
+
+>>>>>>> 9934cc73803234658c636e8b7d22bf256ef643de
 
 class AddPlayers extends React.Component {
   render() {
