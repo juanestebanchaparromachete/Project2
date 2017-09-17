@@ -19,6 +19,23 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
                 }
             );
         });
+
+        router.get('/players/:name/results', function(req, res) {
+            var col = db.collection('Results');
+            col.aggregate([
+                {
+                    $match: {
+                        $or: [
+                            {Winner: {$regex : ".*"+req.params.name+".*"}},
+                            {Loser: {$regex : ".*"+req.params.name+".*"}}
+                        ]
+                    }
+                }
+            ]).toArray(function (mongoError, ej) {
+                    res.send(ej);
+                }
+            );
+        });
     }
 });
 /* GET home page. */
