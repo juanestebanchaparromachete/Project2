@@ -2,6 +2,7 @@ import React from 'react'
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 import '../App.css';
 import '../PlayerStats.css';
+import Infinite from 'react-infinite';
 
 class AddPlayers extends React.Component {
   render() {

@@ -4,6 +4,8 @@ import '../PlayerStats.css';
 import SearchPlayer from './SearchPlayer.js'
 import AddPlayers from './AddPlayers.js'
 
+
+
 class PlayersView extends React.Component {
   state = {users: []}
 
@@ -16,6 +18,7 @@ class PlayersView extends React.Component {
   render() {
     return (
       <div>
+
         <div className="App">
           <header className="jumbotron my-4" style={{marginBottom: 5 + 'px', paddingBottom: 5 + 'px'}}>
             <h1 className="display-3">TenniStats</h1>
@@ -28,6 +31,7 @@ class PlayersView extends React.Component {
           <br/>
           <div className="row text-center">
             {this.state.users.map((user, i) =>
+
               <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
             )}
           </div>
