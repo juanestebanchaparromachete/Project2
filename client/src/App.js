@@ -5,7 +5,7 @@ class App extends Component {
     state = {users: []}
 
     componentDidMount() {
-        fetch('/users')
+        fetch('/players')
             .then(res => res.json())
             .then(users => this.setState({users}));
     }
@@ -17,7 +17,7 @@ class App extends Component {
                 <BooleanAct val={false}/>
                 <h1>Users</h1>
                 {this.state.users.map(user =>
-                    <div key={user.id}>{user.username}</div>
+                    <div key={user.id}>{user.name}</div>
                 )}
             </div>
         );
