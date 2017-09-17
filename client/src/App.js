@@ -135,7 +135,7 @@ function searchPlayerServer() {
     }
 
 class SearchPlayer extends React.Component {
-   state2 = {users: []}
+   state = {users: []}
   constructor(props) {
     super(props);
     this.state = {value: ''};
