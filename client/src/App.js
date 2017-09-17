@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import './PlayerStats.css';
 import ReactDOM from 'react-dom'
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
@@ -18,6 +19,7 @@ class App extends Component {
 
 class PlayerStatsView extends React.Component {
     state = {users: []}
+
     componentDidMount() {
         console.log(this.props);
         fetch('/players/Federer/Results')
@@ -30,22 +32,27 @@ class PlayerStatsView extends React.Component {
         return (
 
             <div className="App">
-                <section>
+                <section id="playerCardSection">
                     <div className="container py-3">
                         <div className="card">
                             <div className="row ">
                                 <div className="col-md-4">
-                                    <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400"
-                                         className="w-100"></img>
+                                    <img
+                                        src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400"
+                                        className="w-100"></img>
                                 </div>
                                 <div className="col-md-8 px-3">
                                     <div className="card-block px-3">
                                         <h4 className="card-title">{this.props.routeParams.name}</h4>
-                                        <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                        <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore
+                                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco
                                             laboris nisi ut aliquip ex ea commodo consequat. </p>
-                                        <p className="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                                        <p className="card-text">Duis aute irure dolor in reprehenderit in voluptate
+                                            velit esse cillum
+                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                            proident, sunt in
                                             culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </div>
                                 </div>
@@ -75,26 +82,27 @@ class PlayersView extends React.Component {
             .then(res => res.json())
             .then(users => this.setState({users}));
     }
-    
+
     render() {
         return (
-        <div >
-            <div className="App">
-                <header className="jumbotron my-4" style={{marginBottom: 5+'px', paddingBottom: 5+'px'}}>
-                    <h1 className="display-3">TenniStats</h1>
-                    <p className="lead">Find the statistics of your favorite tennis players. Just search any player and get its latest
-                        games statistics. You will get the information of all the tennis tournaments in 2016!</p>
-                </header>
+            <div>
+                <div className="App">
+                    <header className="jumbotron my-4" style={{marginBottom: 5 + 'px', paddingBottom: 5 + 'px'}}>
+                        <h1 className="display-3">TenniStats</h1>
+                        <p className="lead">Find the statistics of your favorite tennis players. Just search any player
+                            and get its latest
+                            games statistics. You will get the information of all the tennis tournaments in 2016!</p>
+                    </header>
 
-                <SearchPlayer ></SearchPlayer>
-                <br/>
-                <div className="row text-center">
-                    {this.state.users.map((user, i) =>
-                        <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
-                    )}
+                    <SearchPlayer></SearchPlayer>
+                    <br/>
+                    <div className="row text-center">
+                        {this.state.users.map((user, i) =>
+                            <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
 
         );
     }
@@ -112,7 +120,7 @@ class AddPlayers extends React.Component {
                         age: {this.props.age}</p>
                 </div>
                 <div className="card-footer">
-                    <Link className="btn btn-primary" to={'/'+this.props.name+'/stats'}>Find Out More</Link>
+                    <Link className="btn btn-primary" to={'/' + this.props.name + '/stats'}>Find Out More</Link>
                     {/*<button >Find Out More!</button>*/}
                 </div>
             </div>
@@ -120,64 +128,62 @@ class AddPlayers extends React.Component {
     }
 }
 
-function searchPlayerServer() {
-    fetch('/search/'+ this.state.value)
-        .then(res => res.json())
-        //.then(users => this.setState({users}))
-        .then(SearchPlayer.changeSm())
+class SearchPlayer extends React.Component {
+    state2 = {users: []}
+
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+        this.players = [];
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-class SearchPlayer extends React.Component {
-   state2 = {users: []}
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+    changeSm() {
+        console.log('d')
+    }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    setPlayers(players) {
+        this.players = players
+    }
 
-  changeSm(){
-    console.log('d')
-  }
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    searchPlayerServer();
-    event.preventDefault();
-  }
-
-  
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        fetch('/search/' + this.state.value)
+            .then(res => res.json())
+            .then(players => this.setPlayers({players}));
+        console.log(this.players)
+        event.preventDefault();
+    }
 
 
-  render() {
-    return (
-        <div className="container">
-            <form onSubmit={this.handleSubmit}>
-                <div className="row">
-                <div className="col-md-10">
-                    <input type="text" className="form-control"value={this.state.value} onChange={this.handleChange} placeholder="Type players name"/>
-                </div>
-                <div className="col-md-1">
-                    <input type="submit" className="btn btn-primary" value="Search player" />
-                </div>
-                </div>
-            </form>
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div className="container">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+                        <div className="col-md-10">
+                            <input type="text" className="form-control" value={this.state.value}
+                                   onChange={this.handleChange} placeholder="Type players name"/>
+                        </div>
+                        <div className="col-md-1">
+                            <input type="submit" className="btn btn-primary" value="Search player"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        );
+    }
 }
 
 ReactDOM.render(
-  <SearchPlayer />,
-  document.getElementById('root')
+    <SearchPlayer/>,
+    document.getElementById('root')
 );
-
-
 
 
 export default App;
