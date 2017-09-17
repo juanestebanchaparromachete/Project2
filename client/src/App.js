@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import './PlayerStats.css';
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
 class App extends Component {
@@ -28,7 +29,7 @@ class PlayerStatsView extends React.Component {
         return (
 
             <div className="App">
-                <section>
+                <section id="playerCardSection">
                     <div className="container py-3">
                         <div className="card">
                             <div className="row ">
@@ -125,7 +126,7 @@ class AddPlayers extends React.Component {
                         age: {this.props.age}</p>
                 </div>
                 <div className="card-footer">
-                    <Link className="btn btn-primary" to={'/'+this.props.name+'/stats'}>Find Out More</Link>
+                    <Link className="btn btn-primary" to={'/'+this.props.name+'/stats'} player={this.props}>Find Out More</Link>
                     {/*<button >Find Out More!</button>*/}
                 </div>
             </div>
