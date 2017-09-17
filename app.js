@@ -4,11 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient;
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdeportivos", function(err, db) {
+  if(!err) {
+    console.log("We are connected");
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
