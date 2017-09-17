@@ -1,6 +1,8 @@
 import React from 'react'
 import '../App.css';
 import '../CSS/Table.css';
+import '../CSS/stars.css';
+
 
 class PlayerStatsView extends React.Component {
   state = {users: []}
@@ -26,7 +28,7 @@ class PlayerStatsView extends React.Component {
                 </div> 
                 <div className="col-md-8 px-3">
                   <div className="card-block px-3">
-                    <h4 className="card-title">{this.props.routeParams.name}</h4>
+                    <h3 className="card-title">{this.props.routeParams.name}</h3>
                     <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor
                       incididunt ut labore
                       et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -38,12 +40,31 @@ class PlayerStatsView extends React.Component {
                       proident, sunt in
                       culpa qui officia deserunt mollit anim id est laborum.</p>
                   </div>
+                  <br/>
+                  <div className="row">
+                      <div className="col-md-3 px-1">
+                      <h5>Rate displayer:</h5>
+                      </div>
+                    <div className="col-md-5 px-3">
+                     <fieldset className="rating">
+                      <input type="radio" id="star5" name="rating" value="5" /><label className = "full" for="star5" title="Awesome - 5 stars"></label>
+                      <input type="radio" id="star4half" name="rating" value="4 and a half" /><label className="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                      <input type="radio" id="star4" name="rating" value="4" /><label className = "full" for="star4" title="Pretty good - 4 stars"></label>
+                      <input type="radio" id="star3half" name="rating" value="3 and a half" /><label className="half" for="star3half" title="Meh - 3.5 stars"></label>
+                      <input type="radio" id="star3" name="rating" value="3" /><label className = "full" for="star3" title="Meh - 3 stars"></label>
+                      <input type="radio" id="star2half" name="rating" value="2 and a half" /><label className="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                      <input type="radio" id="star2" name="rating" value="2" /><label className = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                      <input type="radio" id="star1half" name="rating" value="1 and a half" /><label className="half" for="star1half" title="Meh - 1.5 stars"></label>
+                      <input type="radio" id="star1" name="rating" value="1" /><label className = "full" for="star1" title="Sucks big time - 1 star"></label>
+                      <input type="radio" id="starhalf" name="rating" value="half" /><label className="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                      </fieldset>
+                    </div>                
                 </div>
-
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
         {/*TABLE*/}
         <table className="table-fill">
           <thead>
