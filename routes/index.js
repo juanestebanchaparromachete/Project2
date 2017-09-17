@@ -20,7 +20,7 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
             );
         });
 
-        router.get('/:name', function(req, res) {
+        router.get('/search/:name', function(req, res) {
             var col = db.collection('Players');
             col.find({name:{$regex : ".*"+req.params.name+".*"}}).toArray(function (mongoError, ej) {
                   res.send(ej);
