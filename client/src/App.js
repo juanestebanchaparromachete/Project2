@@ -60,7 +60,6 @@ class PlayersView extends React.Component {
     render() {
         return (
             <div className="App">
-                <Nav/>
                 <div className="row text-center">
                     {this.state.users.map((user, i) =>
                         <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
