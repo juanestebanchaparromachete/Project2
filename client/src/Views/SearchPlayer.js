@@ -3,6 +3,8 @@ import '../App.css';
 import '../PlayerStats.css';
 import ReactDOM from 'react-dom'
 import axios from 'axios';
+import AddPlayers from './AddPlayers.js'
+
 
 
 class SearchPlayer extends React.Component {
@@ -20,13 +22,26 @@ class SearchPlayer extends React.Component {
     console.log('d')
   }
 
-  setPlayers(players) {
-    this.players = players
-  }
+    setPlayers(players) {
+        this.players = players
+        console.log(players);
+        this.render();
+        this.forceUpdate();
+    }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        var upperClass = this;
+        axios.get('/search/' + event.target.value)
+            .then(function (response) {
+                upperClass.setPlayers(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        event.preventDefault();
+        
+    }
 
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.value);
@@ -55,6 +70,12 @@ class SearchPlayer extends React.Component {
             </div>
           </div>
         </form>
+        <br/>
+            <div className="row text-center">
+                {this.players.map((user, i) =>
+                <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
+                )}
+            </div>
       </div>
     );
   }
