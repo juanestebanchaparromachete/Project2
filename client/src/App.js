@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import ReactDOM from 'react-dom'
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
 class App extends Component {
@@ -45,7 +46,7 @@ class PlayerStatsView extends React.Component {
                                         <p className="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                                             dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                                             culpa qui officia deserunt mollit anim id est laborum.</p>
-                                        <a href="#" class="btn btn-primary">Read More</a>
+                                        <a href="#" className="btn btn-primary">Read More</a>
                                     </div>
                                 </div>
 
@@ -81,27 +82,19 @@ class PlayersView extends React.Component {
             .then(res => res.json())
             .then(users => this.setState({users}));
     }
-
+    
     render() {
         return (
-            <div >
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="input-group">
-                  <input type="text" className="form-control" placeholder="Search player"/>
-                  <span className="input-group-btn">
-                    <SearchPlayer ></SearchPlayer>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <br/>
+        <div >
             <div className="App">
                 <header className="jumbotron my-4" style={{marginBottom: 5+'px', paddingBottom: 5+'px'}}>
                     <h1 className="display-3">TenniStats</h1>
-                    <p className="lead">Find the statistics of your favorite tennis players. Just search any player and get it's latest
+                    <p className="lead">Find the statistics of your favorite tennis players. Just search any player and get its latest
                         games statistics. You will get the information of all the tennis tournaments in 2016!</p>
                 </header>
+
+                <SearchPlayer ></SearchPlayer>
+                <br/>
                 <div className="row text-center">
                     {this.state.users.map((user, i) =>
                         <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
@@ -113,6 +106,7 @@ class PlayersView extends React.Component {
         );
     }
 }
+
 
 class AddPlayers extends React.Component {
     render() {
@@ -134,17 +128,47 @@ class AddPlayers extends React.Component {
 }
 
 class SearchPlayer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
   render() {
-    var t = function(){
-        alert('dew')
-    }
     return (
-      <button className="btn btn-primary"  type="button" onClick={() => t()}>
-        Go!
-      </button>
+    <div className="container">
+      <form onSubmit={this.handleSubmit}>
+      <div className="row">
+      <div className="col-md-10">
+        <input type="text" className="form-control"value={this.state.value} onChange={this.handleChange} placeholder="Type players name"/>
+        </div>
+        <div className="col-md-1">
+        <input type="submit" className="btn btn-primary" value="Search player" />
+        </div>
+        </div>
+      </form>
+      </div>
     );
   }
 }
+
+ReactDOM.render(
+  <SearchPlayer />,
+  document.getElementById('root')
+);
+
+
 
 
 export default App;
