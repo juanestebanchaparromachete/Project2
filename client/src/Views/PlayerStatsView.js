@@ -23,7 +23,7 @@ class PlayerStatsView extends React.Component {
                   <img style={{maxWidth: 300}}
                        src={this.props.location.query.url}
                        className="w-100"></img>
-                </div>
+                </div> 
                 <div className="col-md-8 px-3">
                   <div className="card-block px-3">
                     <h4 className="card-title">{this.props.routeParams.name}</h4>
