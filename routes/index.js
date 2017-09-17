@@ -20,6 +20,14 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
             );
         });
 
+        router.get('/:name', function(req, res) {
+            var col = db.collection('Players');
+            col.find({name:{$regex : ".*"+req.params.name+".*"}}).toArray(function (mongoError, ej) {
+                  res.send(ej);
+                }
+            );}
+        );
+
         router.get('/players/:name/results', function(req, res) {
             var col = db.collection('Results');
             col.aggregate([

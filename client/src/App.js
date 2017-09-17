@@ -84,6 +84,18 @@ class PlayersView extends React.Component {
 
     render() {
         return (
+            <div >
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="input-group">
+                  <input type="text" className="form-control" placeholder="Search player"/>
+                  <span className="input-group-btn">
+                    <SearchPlayer ></SearchPlayer>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <br/>
             <div className="App">
                 <header className="jumbotron my-4" style={{marginBottom: 5+'px', paddingBottom: 5+'px'}}>
                     <h1 className="display-3">TenniStats</h1>
@@ -96,6 +108,8 @@ class PlayersView extends React.Component {
                     )}
                 </div>
             </div>
+        </div>
+
         );
     }
 }
@@ -118,5 +132,19 @@ class AddPlayers extends React.Component {
         </div>;
     }
 }
+
+class SearchPlayer extends React.Component {
+  render() {
+    var t = function(){
+        alert('dew')
+    }
+    return (
+      <button className="btn btn-primary"  type="button" onClick={() => t()}>
+        Go!
+      </button>
+    );
+  }
+}
+
 
 export default App;
