@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import './PlayerStats.css';
 import ReactDOM from 'react-dom'
+import axios from 'axios';
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
 class App extends Component {
@@ -152,14 +153,17 @@ class SearchPlayer extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        fetch('/search/' + this.state.value)
-            .then(res => res.json())
-            .then(players => this.setPlayers({players}));
-        console.log(this.players)
+        // alert('A name was submitted: ' + this.state.value);
+        var upperClass = this;
+        axios.get('/search/' + this.state.value)
+            .then(function (response) {
+                upperClass.setPlayers(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         event.preventDefault();
     }
-
 
     render() {
         return (
