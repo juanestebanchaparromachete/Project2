@@ -13,30 +13,32 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <HelloComponent name="Carlos"/>
-                <BooleanAct val={false}/>
-                <h1>Users</h1>
-                {this.state.users.map(user =>
-                    <div key={user.id}>{user.name}</div>
-                )}
+                <div className="row text-center">
+                    {this.state.users.map((user,i) =>
+                        <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
+                    )}
+                </div>
             </div>
         );
     }
 }
 
-class HelloComponent extends React.Component {
-    render() {
-        return <div>Hello {this.props.name}</div>;
-    }
-}
 
-class BooleanAct extends React.Component {
+class AddPlayers extends React.Component{
     render() {
-        if (this.props.val === true)
-            return <div>TRUE {this.props.name}</div>;
-        else
-            return <div>FALSE {this.props.name}</div>;
-    };
+        return <div className="col-lg-3 col-md-6 mb-4">
+          <div className="card">
+            <img className="card-img-top" src={this.props.url} alt="Profile pic"></img>
+            <div className="card-body">
+              <h4 className="card-title">{this.props.name}</h4>
+              <p className="card-text">Current player points: {this.props.points} <br/> Player age: {this.props.age}</p>
+            </div>
+            <div className="card-footer">
+              <button className="btn btn-primary">Find Out More!</button>
+            </div>
+          </div>
+        </div>;
+    }
 }
 
 export default App;
