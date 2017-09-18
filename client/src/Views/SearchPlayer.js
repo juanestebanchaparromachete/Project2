@@ -24,7 +24,6 @@ class SearchPlayer extends React.Component {
 
     setPlayers(players) {
         this.players = players
-        console.log(players);
         this.render();
         this.forceUpdate();
     }
@@ -32,6 +31,8 @@ class SearchPlayer extends React.Component {
     handleChange(event) {
         this.setState({value: event.target.value});
         var upperClass = this;
+        if(event.target.value==='')
+            {}else{
         axios.get('/search/' + event.target.value)
             .then(function (response) {
                 upperClass.setPlayers(response.data)
@@ -40,6 +41,7 @@ class SearchPlayer extends React.Component {
                 console.log(error);
             });
         event.preventDefault();
+    }
         
     }
 
@@ -57,7 +59,7 @@ class SearchPlayer extends React.Component {
   }
 
   render() {
-    if(this.state.value=='')
+    if(this.state.value==='')
     {
         return (
     <div className="container">
@@ -72,6 +74,7 @@ class SearchPlayer extends React.Component {
             </div>
           </div>
         </form>
+
       </div>
             );
     }else{
