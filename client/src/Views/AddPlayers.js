@@ -4,8 +4,6 @@ import '../App.css';
 import '../PlayerStats.css';
 import '../CSS/stars.css';
 
->>>>>>> 9934cc73803234658c636e8b7d22bf256ef643de
-
 class AddPlayers extends React.Component {
   render() {
     return <div className="col-lg-3 col-md-6 mb-4">
