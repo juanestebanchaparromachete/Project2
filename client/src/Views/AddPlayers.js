@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
+import {Link} from 'react-router'
 import '../App.css';
 import '../PlayerStats.css';
 import '../CSS/stars.css';

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import './PlayerStats.css';
-import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
+import {Router, Route, hashHistory} from 'react-router'
 import PlayersView from './Views/PlayersView.js'
 import PlayerStatsView from './Views/PlayerStatsView.js'
 
