@@ -43,7 +43,8 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
 
     router.get('/search/:name', function (req, res) {
         var col = db.collection('Players');
-        col.find({name: {$regex: ".*" + req.params.name + ".*"}}).toArray(function (mongoError, ej) {
+        var reg = new RegExp(".*" + req.params.name+ ".*", "i")
+        col.find({name: {$regex: reg}}).toArray(function (mongoError, ej) {
             res.send(ej);
           }
         );
@@ -52,12 +53,13 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
 
     router.get('/players/:name/results', function (req, res) {
       var col = db.collection('Results');
+      var reg = new RegExp(".*" + req.params.name+ ".*", "i")
       col.aggregate([
         {
           $match: {
             $or: [
-              {Winner: {$regex: ".*" + req.params.name + ".*"}},
-              {Loser: {$regex: ".*" + req.params.name + ".*"}}
+              {Winner: {$regex: reg}},  
+              {Loser: {$regex: reg}}
             ]
           }
         }
@@ -99,8 +101,12 @@ MongoClient.connect("mongodb://admin:AdminAdmin@ds139954.mlab.com:39954/datosdep
         averageBet /= countSets;
         averageWonSets /= countSets;
 
-        console.log(averageBet)
-        res.send(averageBet+" "+averageWonSets+" "+wonCount)
+        var statistics = {
+          averageBet : averageBet.toFixed(2),
+          averageWonSets : averageWonSets.toFixed(2),
+          wonCount : wonCount
+        }
+        res.send(statistics)
         }
 
       );

@@ -5,12 +5,22 @@ import '../CSS/stars.css';
 import axios from 'axios';
 
 class PlayerStatsView extends React.Component {
-  state = {users: [], voted:false}
+  state = {users: [], voted:false, statistics : {}}
 
   componentDidMount() {
     fetch('/players/' + this.props.params.name.split(' ')[1] + ' ' + this.props.params.name.split(' ')[0].charAt(0) + '.' + '/Results')
       .then(res => res.json())
       .then(users => this.setState({users}));
+    var upperClass = this;
+    axios.get('/players/' + this.props.params.name.split(' ')[1] + ' ' + this.props.params.name.split(' ')[0].charAt(0) + '.' + '/statistics')
+      .then(function (response) {
+        console.log(response.data)
+        upperClass.state.statistics = response.data;
+        upperClass.forceUpdate();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleSelectOption(e){
@@ -48,17 +58,13 @@ class PlayerStatsView extends React.Component {
                 </div>
                 <div className="col-md-8 px-3">
                   <div className="card-block px-3">
-                    <h3 className="card-title">{this.props.routeParams.name}</h3>
-                    <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <p className="card-text">Duis aute irure dolor in reprehenderit in voluptate
-                      velit esse cillum
-                      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                      proident, sunt in
-                      culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <h2 className="card-title">{this.props.routeParams.name}</h2>
+                    <p className="card-text">
+                      <h5>Average sets won per match:</h5>{this.state.statistics.averageWonSets}
+                      <h5>Average Bet365 quote:</h5>{this.state.statistics.averageBet}
+                      <h5>Total wins in the season:</h5>{this.state.statistics.wonCount}
+                    </p>
+                    <p className="card-text"></p>
                   </div>
                   <br/>
                   <div className="row">
