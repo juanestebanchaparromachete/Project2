@@ -57,6 +57,24 @@ class SearchPlayer extends React.Component {
   }
 
   render() {
+    if(this.state.value=='')
+    {
+        return (
+    <div className="container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-md-10">
+              <input type="text" className="form-control" value={this.state.value}
+                     onChange={this.handleChange} placeholder="Type players name"/>
+            </div>
+            <div className="col-md-1">
+              <input type="submit" className="btn btn-primary" value="Search player"/>
+            </div>
+          </div>
+        </form>
+      </div>
+            );
+    }else{
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -78,6 +96,7 @@ class SearchPlayer extends React.Component {
             </div>
       </div>
     );
+    }
   }
 }
 

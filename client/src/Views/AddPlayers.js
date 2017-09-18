@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import {Router, Route, Link, IndexRoute, hashHistory, browserHistory} from 'react-router'
 import '../App.css';
 import '../PlayerStats.css';
@@ -23,5 +24,7 @@ class AddPlayers extends React.Component {
     </div>;
   }
 }
+
+
 
 export default AddPlayers;

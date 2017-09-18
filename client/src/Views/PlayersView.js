@@ -30,6 +30,7 @@ class PlayersView extends React.Component {
 
           <SearchPlayer></SearchPlayer>
           <br/>
+          <h3>All players: </h3>
           <div className="row text-center">
             {this.state.users.map((user, i) =>
               <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
