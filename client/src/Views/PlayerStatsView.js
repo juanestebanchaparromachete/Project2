@@ -2,15 +2,35 @@ import React from 'react'
 import '../App.css';
 import '../CSS/Table.css';
 import '../CSS/stars.css';
-
+import axios from 'axios';
 
 class PlayerStatsView extends React.Component {
-  state = {users: []}
+  state = {users: [], voted:false}
 
   componentDidMount() {
     fetch('/players/' + this.props.params.name.split(' ')[1] + ' ' + this.props.params.name.split(' ')[0].charAt(0) + '.' + '/Results')
       .then(res => res.json())
       .then(users => this.setState({users}));
+  }
+
+  handleSelectOption(e){
+    if (this.state.voted === true){
+      console.log('Sorry, you already voted');
+    }
+    else{
+      var rate = {
+        score: e.target.value,
+        name:this.props.params.name
+      }
+      axios.post('/rate', rate)
+        .then(function (response) {
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      this.state.voted = true;
+    }
   }
 
   render() {
@@ -43,20 +63,20 @@ class PlayerStatsView extends React.Component {
                   <br/>
                   <div className="row">
                       <div className="col-md-3 px-1">
-                      <h5>Rate displayer:</h5>
+                      <h5 style={{marginTop : 12+'px'}}>Rate this player:</h5>
                       </div>
-                    <div className="col-md-5 px-3">
-                     <fieldset className="rating">
-                      <input type="radio" id="star5" name="rating" value="5" /><label className = "full" for="star5" title="Awesome - 5 stars"></label>
-                      <input type="radio" id="star4half" name="rating" value="4 and a half" /><label className="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                      <input type="radio" id="star4" name="rating" value="4" /><label className = "full" for="star4" title="Pretty good - 4 stars"></label>
-                      <input type="radio" id="star3half" name="rating" value="3 and a half" /><label className="half" for="star3half" title="Meh - 3.5 stars"></label>
-                      <input type="radio" id="star3" name="rating" value="3" /><label className = "full" for="star3" title="Meh - 3 stars"></label>
-                      <input type="radio" id="star2half" name="rating" value="2 and a half" /><label className="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                      <input type="radio" id="star2" name="rating" value="2" /><label className = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                      <input type="radio" id="star1half" name="rating" value="1 and a half" /><label className="half" for="star1half" title="Meh - 1.5 stars"></label>
-                      <input type="radio" id="star1" name="rating" value="1" /><label className = "full" for="star1" title="Sucks big time - 1 star"></label>
-                      <input type="radio" id="starhalf" name="rating" value="half" /><label className="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                    <div className="col-md-5 px-1">
+                     <fieldset className="rating" onChange={this.handleSelectOption.bind(this)}>
+                      <input type="radio" id="star5" name="rating" value="5" /><label className = "full" htmlFor="star5" title="Awesome - 5 stars"></label>
+                      <input type="radio" id="star4half" name="rating" value="4.5" /><label className="half" htmlFor="star4half" title="Pretty good - 4.5 stars"></label>
+                      <input type="radio" id="star4" name="rating" value="4" /><label className = "full" htmlFor="star4" title="Pretty good - 4 stars"></label>
+                      <input type="radio" id="star3half" name="rating" value="3.5" /><label className="half" htmlFor="star3half" title="Meh - 3.5 stars"></label>
+                      <input type="radio" id="star3" name="rating" value="3" /><label className = "full" htmlFor="star3" title="Meh - 3 stars"></label>
+                      <input type="radio" id="star2half" name="rating" value="2.5" /><label className="half" htmlFor="star2half" title="Kinda bad - 2.5 stars"></label>
+                      <input type="radio" id="star2" name="rating" value="2" /><label className = "full" htmlFor="star2" title="Kinda bad - 2 stars"></label>
+                      <input type="radio" id="star1half" name="rating" value="1.5" /><label className="half" htmlFor="star1half" title="Meh - 1.5 stars"></label>
+                      <input type="radio" id="star1" name="rating" value="1" /><label className = "full" htmlFor="star1" title="Sucks big time - 1 star"></label>
+                      <input type="radio" id="starhalf" name="rating" value="half" /><label className="half" htmlFor="starhalf" title="Sucks big time - 0.5 stars"></label>
                       </fieldset>
                     </div>                
                 </div>

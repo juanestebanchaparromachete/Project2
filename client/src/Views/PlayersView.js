@@ -16,6 +16,7 @@ class PlayersView extends React.Component {
   }
 
   render() {
+    console.log(this.state.users)
     return (
       <div>
 
@@ -31,7 +32,6 @@ class PlayersView extends React.Component {
           <br/>
           <div className="row text-center">
             {this.state.users.map((user, i) =>
-
               <AddPlayers key={i} name={user.name} url={user.url} points={user.points} age={user.age}/>
             )}
           </div>
