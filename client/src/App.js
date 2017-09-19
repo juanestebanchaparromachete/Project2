@@ -16,8 +16,8 @@ class App extends Component {
     )
   }
 }
-
-
+// todas tus clases estan muy bien hechas utilice un programa para verificar tu codigo y sale que esta perfecto  hasa hecho un muy buen trabajo
+// tambien  el proyecto es de interes para las demas personas y siento que puede usarse mucho!
 const NotFound = () => (
   <h1>404.. This page is not found!</h1>)
 
